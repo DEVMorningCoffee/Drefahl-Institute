@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Clinic Dashboard</title>
+    <link rel="stylesheet" href="staff.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="navbar-left">
+                <a href="../index.html">Inicio</a>
+                <a href="../index.html">Agendar Consulta</a>
+            </div>
+            <div class="navbar-center">
+                <h1>Instituto Drefahl</h1>
+                <h2>Cirurgia Vascular</h2>
+            </div>
+            <div class="navbar-right">
+                <a href="#">Ver Consultas</a>
+                <a href="login.html">Log out</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="upper-section">
+        <section id="schedule">
+            <div id="formtitle">
+                <img src="profileicon.png" style="width: 80px;">
+                <h2>Marcar Consulta</h2>
+            </div>
+            <div id="calendar">
+                <!-- Calendar content will be added dynamically with JavaScript -->
+            </div>
+            <div id="appointment-form" style="margin-top: 20px;">
+                <form id="appointment-form">
+                    <label for="date">Data:</label>
+                    <input type="date" id="date" name="date" required>
+
+                    <label for="time">Hora:</label>
+                    <input type="time" id="time" name="time" required>
+
+                    <label for="patient-name">Nome do Paciente:</label>
+                    <input type="text" id="patient-name" name="patient-name" required>
+                    
+                    <label for="patient-phone">Telefone:</label>
+                    <input type="text" id="patient-phone" name="patient-phone" required>                                       
+                                      
+                    <label for="doctor">Doutor:</label>
+                    <select id="doctor" name="doctor" required>
+                        <option value="Dr. Fabio">Dr. Fabio</option>
+                        <!-- Add more doctor options as needed -->
+                    </select>
+
+                    <label for="status">Status:</label>
+                    <select id="status" name="status" required>
+                        <option value="N/A">N/A</option>
+                        <option value="Agendada">Agendada</option>
+                        <option value="Retorno">Retorno</option>
+                        <option value="Curativo">Curativo</option>
+                        <option value="Cancelada">Cancelada</option>
+                        <option value="Remarcada">Remarcada</option>
+                        <option value="Finalizada - Paga">Finalizada - Paga</option>
+                        <option value="Finalizada - não paga">Finalizada - não paga</option>
+                    </select>
+                    
+                    <label for="obs">Observações:</label>
+                    <textarea id="obs" name="obs" rows="4" cols="50"></textarea>
+
+                    <button type="submit" style="margin-top: 20px;">Criar Consulta</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="appointments">
+            <h2 style="margin-bottom: 0;">Buscar Consultas <img src="searchicon.png" style="width: 20px;"></h2>
+            <div id="appointment-table">
+                <div id="filter-options">
+                    <label for="filter-date">Data:</label>
+                    <input type="date" id="filter-date" name="date">
+
+                    <label for="filter-time" style="margin-left: 7px;">Hora:</label>
+                    <input type="time" id="filter-time" name="time">
+
+                    <label for="filter-name" style="margin-left: 7px;">Nome:</label>
+                    <input type="text" id="filter-name" placeholder="Enter name">
+
+                    <label for="filter-doctor" style="margin-left: 7px;">Doutor:</label>
+                    <select id="filter-doctor" name="doctor">
+                        <option value="">Todas</option>
+                        <option value="Dr. Fabio">Dr. Fabio</option>
+                        <!-- Add more doctor options as needed -->
+                    </select>
+
+                    <label for="filter-status" style="margin-left: 7px;">Status:</label>
+                    <select id="filter-status" name="status">
+                        <option value="">Todos</option>
+                        <option value="N/A">N/A</option>
+                        <option value="Agendada">Agendada</option>
+                        <option value="Retorno">Retorno</option>
+                        <option value="Curativo">Curativo</option>
+                        <option value="Cancelada">Cancelada</option>
+                        <option value="Remarcada">Remarcada</option>
+                        <option value="Finalizada - Paga">Finalizada - Paga</option>
+                        <option value="Finalizada - não paga">Finalizada - não paga</option>
+                    </select>
+
+                    <button id="show-all-appointments">Mostrar Todos</button>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Data <button id="sort-date"><img src="sortArrow.png" width="10px"></button></th>
+                            <th>Hora <button id="sort-time"><img src="sortArrow.png" width="10px"></button></th>
+                            <th>Paciente</th>
+                            <th>Telefone</th>
+                            <th>Doutor</th>
+                            <th>Status</th>
+                            <th>Observações</th>
+                            <th>Delete</th>
+                            <th>Browse</th>
+                            <th>Upload</th>
+                        </tr>
+                    </thead>
+                    <tbody id="appointment-list">
+                        
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; Instituto Drefahl</p>
+    </footer>
+
+    <!-- Move the script tag to the end of the body -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aws-sdk/2.1049.0/aws-sdk.min.js"></script>
+    <script src="staff-main.js"></script>
+    <script>
+        // Ensure that the updateTable function is called after the DOM is fully loaded
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.querySelector('form');
+            updateTable();
+        });
+    </script>
+</body>
+
+</html>
