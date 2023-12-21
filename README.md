@@ -73,6 +73,3 @@ Visit [Drefahl Clinic](https://dr-html.s3.us-east-2.amazonaws.com/index.html) in
 
 ## License
 This project is licensed under the ISC License - see the [LICENSE](LICENSE) file for details.
-```
-
-This README provides more detailed information, including instructions for setting up AWS, environment variables, and running the application. Adjust the content as needed for your specific project requirements.
